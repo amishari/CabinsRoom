@@ -1,4 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import ApplyLayout from './ui/ApplyLayout';
 import Error from './Error';
 import Dashboard from './pages/Dashboard';
@@ -42,6 +44,21 @@ const router = createBrowserRouter([
     path: '/login',
   },
 ]);
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60 * 1000,
+    },
+  },
+});
 export default function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} />
+        <RouterProvider router={router} />;
+      </QueryClientProvider>
+    </>
+  );
 }
