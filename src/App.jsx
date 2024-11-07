@@ -11,6 +11,7 @@ import Users from './pages/Users';
 import Login from './pages/Login';
 
 import './index.css';
+import { Toaster } from 'react-hot-toast';
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,26 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
         <RouterProvider router={router} />;
+        <Toaster
+          position="top-center"
+          gutter={12}
+          containerStyle={{ margin: '88px' }}
+          toastOptions={{
+            success: {
+              duration: 3000,
+            },
+            error: {
+              duration: 5000,
+            },
+            style: {
+              fontSize: '16px',
+              maxWidth: '500px',
+              padding: '16px 24px',
+              backgroundColor: 'white',
+              color: 'blue',
+            },
+          }}
+        />
       </QueryClientProvider>
     </>
   );
