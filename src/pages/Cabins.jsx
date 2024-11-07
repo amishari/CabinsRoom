@@ -4,6 +4,7 @@ import { getCabins } from '../services/apiCabins';
 import Spinner from '../ui/Spinner';
 import CabinHeaderRow from '../features/cabins/CabinHeaderRow';
 import CabinHeader from '../features/cabins/CabinHeader';
+import CreateCabinForm from '../features/cabins/CreateCabinForm';
 
 function Cabins() {
   const {
@@ -25,6 +26,7 @@ function Cabins() {
           <CabinRow cabin={cabin} key={cabin.id} />
         ))}
       </div>
+      <CreateCabinForm />
     </>
   );
 }
