@@ -3,6 +3,8 @@ function CreateCabinForm() {
     'rounded-sm border-2 border-gray-300 bg-gray-50 px-5 py-3 shadow-md';
   const classDiv =
     'grid grid-cols-[24rem_1fr_1.2fr] items-center gap-10 px-0 py-5';
+  const classButton =
+    'grid grid-cols-[24rem_1fr_1.2fr] items-center gap-10 px-0 py-5 col-start-3 col-end-4';
   return (
     <div>
       <form
@@ -17,20 +19,20 @@ function CreateCabinForm() {
         </div>
 
         <div className={classDiv}>
-          <label className="font-medium" htmlFor="name">
+          <label className="font-medium" htmlFor="maxCapacity">
             Maximum Capacity
           </label>
           <input className={classInput} type="number" id="maxCapacity" />
         </div>
 
         <div className={classDiv}>
-          <label className="font-medium" htmlFor="name">
+          <label className="font-medium" htmlFor="regularPrice">
             Regular Price
           </label>
           <input className={classInput} type="number" id="regularPrice" />
         </div>
         <div className={classDiv}>
-          <label className="font-medium" htmlFor="name">
+          <label className="font-medium" htmlFor="discount">
             Discount
           </label>
           <input
@@ -41,7 +43,7 @@ function CreateCabinForm() {
           />
         </div>
         <div className={classDiv}>
-          <label className="font-medium" htmlFor="name">
+          <label className="font-medium" htmlFor="description">
             Description for website
           </label>
           <textarea
@@ -52,7 +54,7 @@ function CreateCabinForm() {
           />
         </div>
         <div className={classDiv}>
-          <label className="font-medium" htmlFor="name">
+          <label className="font-medium" htmlFor="image">
             Cabin Photo
           </label>
           <input
@@ -84,6 +86,17 @@ function CreateCabinForm() {
     }
   }
 `; */}
+        </div>
+        <div className="mx-4 my-0 flex justify-end gap-16">
+          <button
+            className="rounded-2xl border-2 border-gray-200 bg-gray-100 px-4 py-2 text-xl font-semibold text-gray-950 hover:bg-gray-400"
+            type="reset"
+          >
+            Cancel
+          </button>
+          <button className="rounded-2xl border-2 border-green-200 bg-green-400 px-4 py-2 text-xl font-semibold text-gray-950 hover:bg-green-400">
+            Edit Cabin
+          </button>
         </div>
       </form>
     </div>
