@@ -5,8 +5,11 @@ import Spinner from '../ui/Spinner';
 import CabinHeaderRow from '../features/cabins/CabinHeaderRow';
 import CabinHeader from '../features/cabins/CabinHeader';
 import CreateCabinForm from '../features/cabins/CreateCabinForm';
+import { useState } from 'react';
 
 function Cabins() {
+  const [showForm, setShowForm] = useState(false);
+
   const {
     isLoading,
     data: cabins,
@@ -26,10 +29,13 @@ function Cabins() {
           <CabinRow cabin={cabin} key={cabin.id} />
         ))}
       </div>
-      <button className="my-4 w-full rounded-md border-2 border-blue-900 bg-blue-500 px-4 py-4 text-xl font-semibold text-white hover:bg-blue-400">
+      <button
+        onClick={() => setShowForm((show) => !show)}
+        className="my-4 w-full rounded-md border-2 border-blue-900 bg-blue-500 px-4 py-4 text-xl font-semibold text-white hover:bg-blue-400"
+      >
         Add new Cabin
       </button>
-      <CreateCabinForm />
+      {showForm && <CreateCabinForm />}
     </>
   );
 }
