@@ -26,6 +26,9 @@ function Cabins() {
           <CabinRow cabin={cabin} key={cabin.id} />
         ))}
       </div>
+      <button className="my-4 w-full rounded-md border-2 border-blue-900 bg-blue-500 px-4 py-4 text-xl font-semibold text-white hover:bg-blue-400">
+        Add new Cabin
+      </button>
       <CreateCabinForm />
     </>
   );

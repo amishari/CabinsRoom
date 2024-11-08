@@ -36,7 +36,7 @@ function CabinRow({ cabin }) {
       <button
         onClick={() => mutate(cabinId)}
         disabled={isDeleting}
-        className="rounded-xl border-2 bg-red-500 px-5 py-3 text-xl font-semibold text-gray-950"
+        className="rounded-xl border-2 border-x-gray-200 bg-gray-100 px-4 py-2 text-xl font-semibold text-gray-950 hover:bg-gray-400"
       >
         Delete
       </button>

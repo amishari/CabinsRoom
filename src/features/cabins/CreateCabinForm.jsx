@@ -63,38 +63,15 @@ function CreateCabinForm() {
             id="image"
             accept="image/*"
           />
-          {/*
-          <FileInput id="image" accept="image/*" />
-          const FileInput = styled.input`
-  font-size: 1.4rem;
-  border-radius: var(--border-radius-sm);
-
-  &::file-selector-button {
-    font: inherit;
-    font-weight: 500;
-    padding: 0.8rem 1.2rem;
-    margin-right: 1.2rem;
-    border-radius: var(--border-radius-sm);
-    border: none;
-    color: var(--color-brand-50);
-    background-color: var(--color-brand-600);
-    cursor: pointer;
-    transition: color 0.2s, background-color 0.2s;
-
-    &:hover {
-      background-color: var(--color-brand-700);
-    }
-  }
-`; */}
         </div>
         <div className="mx-4 my-0 flex justify-end gap-16">
           <button
-            className="rounded-2xl border-2 border-gray-200 bg-gray-100 px-4 py-2 text-xl font-semibold text-gray-950 hover:bg-gray-400"
+            className="rounded-xl border-2 border-gray-200 bg-gray-100 px-4 py-2 text-xl font-semibold text-gray-950 hover:bg-gray-400"
             type="reset"
           >
             Cancel
           </button>
-          <button className="rounded-2xl border-2 border-green-200 bg-green-400 px-4 py-2 text-xl font-semibold text-gray-950 hover:bg-green-400">
+          <button className="rounded-xl border-2 border-blue-900 bg-blue-500 px-4 py-2 text-xl font-semibold text-white hover:bg-blue-400">
             Edit Cabin
           </button>
         </div>
