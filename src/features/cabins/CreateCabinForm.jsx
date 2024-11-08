@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 
 function CreateCabinForm() {
   const queryClient = useQueryClient();
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, getValues } = useForm();
   const { mutate, isLoading: isCreating } = useMutation({
     mutationFn: createCabin,
     onSuccess: () => {
@@ -27,12 +27,15 @@ function CreateCabinForm() {
   function onSubmit(data) {
     mutate(data);
   }
+  function onError(errors) {
+    console.log(errors);
+  }
   return (
     <div>
       <form
         className="rounded-md border-2 border-gray-200 bg-gray-50 px-16 py-10"
         action=""
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(onSubmit, onError)}
       >
         <div className={classDiv}>
           <label className="font-medium" htmlFor="name">
@@ -42,7 +45,7 @@ function CreateCabinForm() {
             className={classInput}
             type="text"
             id="name"
-            {...register('name')}
+            {...register('name', { required: 'باید پر شود' })}
           />
         </div>
 
@@ -54,7 +57,10 @@ function CreateCabinForm() {
             className={classInput}
             type="number"
             id="maxCapacity"
-            {...register('maxCapacity')}
+            {...register('maxCapacity', {
+              required: 'باید پر شود',
+              min: { value: 1, message: 'Capacity should be at least 1' },
+            })}
           />
         </div>
 
@@ -66,7 +72,10 @@ function CreateCabinForm() {
             className={classInput}
             type="number"
             id="regularPrice"
-            {...register('regularPrice')}
+            {...register('regularPrice', {
+              required: 'باید پر شود',
+              min: { value: 1, message: 'Capacity should be at least 1' },
+            })}
           />
         </div>
         <div className={classDiv}>
@@ -78,7 +87,12 @@ function CreateCabinForm() {
             type="number"
             id="discount"
             defaultValue={0}
-            {...register('discount')}
+            {...register('discount', {
+              required: 'باید پر شود',
+              validate: (value) =>
+                value <= getValues().regularPrice ||
+                'Discount should be less than regular Price',
+            })}
           />
         </div>
         <div className={classDiv}>
@@ -90,7 +104,7 @@ function CreateCabinForm() {
             type="text"
             id="description"
             defaultValue=""
-            {...register('description')}
+            {...register('description', { required: 'باید پر شود' })}
           />
         </div>
         <div className={classDiv}>
