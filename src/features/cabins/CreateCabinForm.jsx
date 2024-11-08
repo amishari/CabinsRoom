@@ -7,7 +7,7 @@ function CreateCabinForm() {
   const queryClient = useQueryClient();
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
-  console.log(errors);
+  // console.log(errors);
   const { mutate, isLoading: isCreating } = useMutation({
     mutationFn: createCabin,
     onSuccess: () => {
@@ -49,6 +49,9 @@ function CreateCabinForm() {
             id="name"
             {...register('name', { required: 'باید پر شود' })}
           />
+          {errors?.name?.message && (
+            <span className="text-xl text-red-700">{errors.name.message}</span>
+          )}
         </div>
 
         <div className={classDiv}>
