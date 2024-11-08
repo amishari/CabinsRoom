@@ -8,7 +8,7 @@ function AppLayout() {
     <div className="grid h-screen grid-cols-[14rem_1fr] grid-rows-[auto_1fr]">
       <Sidebar />
       <Header />
-      <main className="p-16 pb-32 pl-20 pr-20 pt-24">
+      <main className="overflow-scroll p-16 pb-32 pl-20 pr-20 pt-24">
         <Outlet />
       </main>
     </div>
