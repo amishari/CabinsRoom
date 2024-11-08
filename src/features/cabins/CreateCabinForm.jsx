@@ -1,7 +1,22 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
+import createCabin from '../../services/apiCabins';
+import toast from 'react-hot-toast';
 
 function CreateCabinForm() {
-  const { register, handleSubmit } = useForm();
+  const queryClient = useQueryClient();
+  const { register, handleSubmit, reset } = useForm();
+  const { mutate, isLoading: isCreating } = useMutation({
+    mutationFn: createCabin,
+    onSuccess: () => {
+      toast.success('New Cabin added successfully!');
+      queryClient.invalidateQueries({ queryKey: ['cabins'] });
+      reset();
+    },
+    onError: (err) => {
+      toast.error(err.message);
+    },
+  });
   const classInput =
     'rounded-sm border-2 border-gray-300 bg-gray-50 px-5 py-3 shadow-md';
   const classDiv =
@@ -10,7 +25,7 @@ function CreateCabinForm() {
     'grid grid-cols-[24rem_1fr_1.2fr] items-center gap-10 px-0 py-5 col-start-3 col-end-4';
 
   function onSubmit(data) {
-    console.log(data);
+    mutate(data);
   }
   return (
     <div>
@@ -97,7 +112,10 @@ function CreateCabinForm() {
           >
             Cancel
           </button>
-          <button className="rounded-xl border-2 border-blue-900 bg-blue-500 px-4 py-2 text-xl font-semibold text-white hover:bg-blue-400">
+          <button
+            disabled={isCreating}
+            className="rounded-xl border-2 border-blue-900 bg-blue-500 px-4 py-2 text-xl font-semibold text-white hover:bg-blue-400"
+          >
             Add Cabin
           </button>
         </div>
