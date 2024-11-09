@@ -15,7 +15,7 @@ export default async function createCabin(newCabin) {
     '/',
     '',
   );
-  const imagePath = `${SUPABASE_URL}/v1/object/public/cabins/${imageName}}`;
+  const imagePath = `${SUPABASE_URL}/storage/v1/object/public/cabins/${imageName}`;
   const { data, error } = await supabase
     .from('cabins')
     .insert([{ ...newCabin, image: imagePath }])
