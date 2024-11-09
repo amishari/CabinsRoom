@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import createCabin from '../../services/apiCabins';
 import toast from 'react-hot-toast';
+import FormRow from '../../ui/FormRow';
 
 function CreateCabinForm() {
   const queryClient = useQueryClient();
@@ -21,8 +22,7 @@ function CreateCabinForm() {
   });
   const classInput =
     'rounded-sm border-2 border-gray-300 bg-gray-50 px-5 py-3 shadow-md';
-  const classDiv =
-    'grid grid-cols-[24rem_1fr_1.2fr] items-center gap-10 px-0 py-5';
+
   const classButton =
     'grid grid-cols-[24rem_1fr_1.2fr] items-center gap-10 px-0 py-5 col-start-3 col-end-4';
 
@@ -36,62 +36,55 @@ function CreateCabinForm() {
     <div>
       <form
         className="rounded-md border-2 border-gray-200 bg-gray-50 px-16 py-10"
-        action=""
         onSubmit={handleSubmit(onSubmit, onError)}
       >
-        <div className={classDiv}>
-          <label className="font-medium" htmlFor="name">
-            Cabin Name
-          </label>
+        <FormRow label="Cabin name" errors={errors?.name?.message}>
           <input
             className={classInput}
             type="text"
             id="name"
-            {...register('name', { required: 'باید پر شود' })}
+            disabled={isCreating}
+            {...register('name', {
+              required: 'باید پر شود',
+              pattern: {
+                value: /^\d+$/,
+                message: 'Only number please.',
+              },
+            })}
           />
-          {errors?.name?.message && (
-            <span className="text-xl text-red-700">{errors.name.message}</span>
-          )}
-        </div>
-
-        <div className={classDiv}>
-          <label className="font-medium" htmlFor="maxCapacity">
-            Maximum Capacity
-          </label>
+        </FormRow>
+        <FormRow label="Maximum Capacity" errors={errors?.maxCapacity?.message}>
           <input
             className={classInput}
             type="number"
             id="maxCapacity"
+            disabled={isCreating}
             {...register('maxCapacity', {
               required: 'باید پر شود',
               min: { value: 1, message: 'Capacity should be at least 1' },
             })}
           />
-        </div>
+        </FormRow>
 
-        <div className={classDiv}>
-          <label className="font-medium" htmlFor="regularPrice">
-            Regular Price
-          </label>
+        <FormRow label={'Regular Price'} errors={errors?.regularPrice?.message}>
           <input
             className={classInput}
             type="number"
             id="regularPrice"
+            disabled={isCreating}
             {...register('regularPrice', {
               required: 'باید پر شود',
               min: { value: 1, message: 'Capacity should be at least 1' },
             })}
           />
-        </div>
-        <div className={classDiv}>
-          <label className="font-medium" htmlFor="discount">
-            Discount
-          </label>
+        </FormRow>
+        <FormRow label={'Discount amount'} errors={errors?.discount?.message}>
           <input
             className={classInput}
             type="number"
             id="discount"
             defaultValue={0}
+            disabled={isCreating}
             {...register('discount', {
               required: 'باید پر شود',
               validate: (value) =>
@@ -99,31 +92,30 @@ function CreateCabinForm() {
                 'Discount should be less than regular Price',
             })}
           />
-        </div>
-        <div className={classDiv}>
-          <label className="font-medium" htmlFor="description">
-            Description for website
-          </label>
+        </FormRow>
+
+        <FormRow label={'Descriptions'} errors={errors?.description?.message}>
           <textarea
             className="bg-gray-0 h-32 w-full rounded-md border-2 border-gray-300 px-5 py-3 shadow-sm"
             type="text"
             id="description"
             defaultValue=""
+            disabled={isCreating}
             {...register('description', { required: 'باید پر شود' })}
           />
-        </div>
-        <div className={classDiv}>
-          <label className="font-medium" htmlFor="image">
-            Cabin Photo
-          </label>
+        </FormRow>
+
+        <FormRow label={'Picture'} errors={errors?.image?.message}>
           <input
             className={classInput}
             // type="url"
             id="image"
             accept="image/*"
             // {...register('image')}
+            disabled={isCreating}
           />
-        </div>
+        </FormRow>
+
         <div className="mx-4 my-0 flex justify-end gap-16">
           <button
             className="rounded-xl border-2 border-gray-200 bg-gray-100 px-4 py-2 text-xl font-semibold text-gray-950 hover:bg-gray-400"
