@@ -28,6 +28,7 @@ function CreateCabinForm() {
 
   function onSubmit(data) {
     mutate({ ...data, image: data.image[0] });
+    console.log(data);
   }
   function onError(errors) {
     console.log(errors);
@@ -107,10 +108,7 @@ function CreateCabinForm() {
 
         <FormRow label={'Picture'} errors={errors?.image?.message}>
           <input
-            className="mr-5 cursor-pointer bg-zinc-300 px-3 py-5 font-semibold text-gray-700 transition-colors duration-200 hover:bg-gray-200 hover:text-blue-500"
-            // &:hover {
-            //   background-color: var(--color-brand-700);
-
+            className="mr-5 cursor-pointer bg-zinc-300 px-3 py-5 font-semibold text-gray-700 transition-colors duration-1000 hover:bg-gray-200 hover:text-blue-500"
             name="picture"
             type="file"
             id="image"
