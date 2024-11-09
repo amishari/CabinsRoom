@@ -27,7 +27,7 @@ function CreateCabinForm() {
     'grid grid-cols-[24rem_1fr_1.2fr] items-center gap-10 px-0 py-5 col-start-3 col-end-4';
 
   function onSubmit(data) {
-    mutate(data);
+    mutate({ ...data, image: data.image[0] });
   }
   function onError(errors) {
     console.log(errors);
@@ -107,11 +107,15 @@ function CreateCabinForm() {
 
         <FormRow label={'Picture'} errors={errors?.image?.message}>
           <input
-            className={classInput}
-            // type="url"
+            className="mr-5 cursor-pointer bg-zinc-300 px-3 py-5 font-semibold text-gray-700 transition-colors duration-200 hover:bg-gray-200 hover:text-blue-500"
+            // &:hover {
+            //   background-color: var(--color-brand-700);
+
+            name="picture"
+            type="file"
             id="image"
             accept="image/*"
-            // {...register('image')}
+            {...register('image', { required: 'This field is required' })}
             disabled={isCreating}
           />
         </FormRow>
