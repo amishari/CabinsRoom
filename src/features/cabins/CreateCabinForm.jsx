@@ -67,7 +67,7 @@ function CreateCabinForm() {
         <FormRow label={'Regular Price'} errors={errors?.regularPrice?.message}>
           <input
             className={classInput}
-            type="text"
+            type="number"
             id="regularPrice"
             disabled={isCreating}
             {...register('regularPrice', {
@@ -79,7 +79,7 @@ function CreateCabinForm() {
         <FormRow label={'Discount amount'} errors={errors?.discount?.message}>
           <input
             className={classInput}
-            type="text"
+            type="number"
             id="discount"
             defaultValue={0}
             disabled={isCreating}
