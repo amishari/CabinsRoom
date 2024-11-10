@@ -34,7 +34,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
   const { mutate: editCabin, isLoading: isEditing } = useMutation({
     mutationFn: ({ newCabinData, id }) => createEditCabin(newCabinData, id),
     onSuccess: () => {
-      toast.success('New Cabin added successfully!');
+      toast.success('Cabin edited successfully!');
       queryClient.invalidateQueries({ queryKey: ['cabins'] });
       reset();
     },
@@ -51,9 +51,25 @@ function CreateCabinForm({ cabinToEdit = {} }) {
 
   function onSubmit(data) {
     const image = typeof data.image === 'string' ? data.image : data.image[0];
+
     if (isEditSession)
-      editCabin({ newCabinData: { ...data, image }, id: editId });
-    else createCabin({ ...data, image: image });
+      editCabin(
+        { newCabinData: { ...data, image }, id: editId },
+        {
+          onSuccess: (data) => {
+            reset();
+          },
+        },
+      );
+    else
+      createCabin(
+        { ...data, image: image },
+        {
+          onSuccess: (data) => {
+            reset();
+          },
+        },
+      );
   }
   function onError(errors) {}
   return (
@@ -118,7 +134,10 @@ function CreateCabinForm({ cabinToEdit = {} }) {
           />
         </FormRow>
 
-        <FormRow label={'Descriptions'} errors={errors?.description?.message}>
+        <FormRow
+          label={'Description for website'}
+          errors={errors?.description?.message}
+        >
           <textarea
             className="bg-gray-0 h-32 w-full rounded-md border-2 border-gray-300 px-5 py-3 shadow-sm"
             type="text"
@@ -139,7 +158,6 @@ function CreateCabinForm({ cabinToEdit = {} }) {
             {...register('image', {
               required: isEditSession ? false : 'The photo must be uploaded',
             })}
-            disabled={isWorking}
           />
         </FormRow>
 
