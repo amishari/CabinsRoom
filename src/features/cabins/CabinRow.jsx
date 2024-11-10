@@ -3,15 +3,16 @@ import CreateEditCabinForm from './CreateCabinForm';
 import { useDeleteCabin } from './useDeleteCabin';
 function CabinRow({ cabin }) {
   const [show, setShow] = useState(false);
+  const { isDeleting, deleteCabin } = useDeleteCabin();
   const {
     id: cabinId,
     name,
     maxCapacity,
     regularPrice,
+
     discount,
     image,
   } = cabin;
-  const { isDeleting, deleteCabin } = useDeleteCabin();
   return (
     <div className="grid grid-cols-[0.6fr_1.8fr_2.2fr_1fr_1fr_1fr] justify-items-start gap-10 rounded-lg border-2 border-b border-gray-200 px-10 py-6 last:border-b-0">
       <img
