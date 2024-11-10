@@ -1,7 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteCabin } from '../../services/apiCabins';
 import toast from 'react-hot-toast';
+import { useState } from 'react';
+import CreateEditCabinForm from './CreateCabinForm';
 function CabinRow({ cabin }) {
+  const [show, setShow] = useState(false);
   const {
     id: cabinId,
     name,
@@ -33,13 +36,22 @@ function CabinRow({ cabin }) {
       </div>
       <div className="text-2xl font-semibold">{regularPrice}</div>
       <div className="text-2xl font-semibold text-gray-800">{discount}</div>
-      <button
-        onClick={() => mutate(cabinId)}
-        disabled={isDeleting}
-        className="rounded-xl border-2 border-x-gray-200 bg-gray-100 px-4 py-2 text-xl font-semibold text-gray-950 hover:bg-gray-400"
-      >
-        Delete
-      </button>
+      <div className="flex justify-between gap-4">
+        <button
+          onClick={() => setShow((show) => !show)}
+          className="rounded-xl border-2 border-x-gray-200 bg-orange-300 px-4 py-2 text-xl font-semibold text-gray-950 hover:bg-gray-400"
+        >
+          Edit
+        </button>
+        <button
+          onClick={() => mutate(cabinId)}
+          disabled={isDeleting}
+          className="rounded-xl border-2 border-x-gray-200 bg-red-300 px-4 py-2 text-xl font-semibold text-gray-950 hover:bg-gray-400"
+        >
+          Delete
+        </button>
+      </div>
+      {show && <CreateEditCabinForm cabinToEdit={cabin} />}
     </div>
   );
 }
