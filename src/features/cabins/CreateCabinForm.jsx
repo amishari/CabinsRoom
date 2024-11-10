@@ -45,10 +45,6 @@ function CreateCabinForm({ cabinToEdit = {} }) {
   const isWorking = isCreating || isEditing;
   const classInput =
     'rounded-sm border-2 border-gray-300 bg-gray-50 px-5 py-3 shadow-md';
-
-  const classButton =
-    'grid grid-cols-[24rem_1fr_1.2fr] items-center gap-10 px-0 py-5 col-start-3 col-end-4';
-
   function onSubmit(data) {
     const image = typeof data.image === 'string' ? data.image : data.image[0];
 

@@ -1,8 +1,6 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteCabin } from '../../services/apiCabins';
-import toast from 'react-hot-toast';
 import { useState } from 'react';
 import CreateEditCabinForm from './CreateCabinForm';
+import { useDeleteCabin } from './useDeleteCabin';
 function CabinRow({ cabin }) {
   const [show, setShow] = useState(false);
   const {
@@ -13,15 +11,7 @@ function CabinRow({ cabin }) {
     discount,
     image,
   } = cabin;
-  const { isLoading: isDeleting, mutate } = useMutation({
-    mutationFn: deleteCabin,
-    onSuccess: () => {
-      toast.success('Cabin successfully deleted!');
-      queryClient.invalidateQueries({ queryKey: ['cabins'] });
-    },
-    onError: (err) => toast.error(err.message),
-  });
-  const queryClient = useQueryClient();
+  const { isDeleting, deleteCabin } = useDeleteCabin();
   return (
     <div className="grid grid-cols-[0.6fr_1.8fr_2.2fr_1fr_1fr_1fr] justify-items-start gap-10 rounded-lg border-2 border-b border-gray-200 px-10 py-6 last:border-b-0">
       <img
@@ -35,7 +25,11 @@ function CabinRow({ cabin }) {
         Suitable for {maxCapacity} persons
       </div>
       <div className="text-2xl font-semibold">{regularPrice}</div>
-      <div className="text-2xl font-semibold text-gray-800">{discount}</div>
+      {discount ? (
+        <div className="text-2xl font-semibold text-green-800">{discount}</div>
+      ) : (
+        <span className="font-bold text-green-800">&mdash;</span>
+      )}
       <div className="flex justify-between gap-4">
         <button
           onClick={() => setShow((show) => !show)}
@@ -44,7 +38,7 @@ function CabinRow({ cabin }) {
           Edit
         </button>
         <button
-          onClick={() => mutate(cabinId)}
+          onClick={() => deleteCabin(cabinId)}
           disabled={isDeleting}
           className="rounded-xl border-2 border-x-gray-200 bg-red-300 px-4 py-2 text-xl font-semibold text-gray-950 hover:bg-gray-400"
         >
