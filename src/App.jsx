@@ -62,7 +62,7 @@ export default function App() {
         <Toaster
           position="top-center"
           gutter={12}
-          containerStyle={{ margin: '88px' }}
+          containerStyle={{ margin: '8px' }}
           toastOptions={{
             success: {
               duration: 3000,

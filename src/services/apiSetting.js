@@ -21,4 +21,5 @@ export async function updateSettings(newSetting) {
     console.log(error);
     throw new Error('Can not apply update on settings');
   }
+  return data;
 }
