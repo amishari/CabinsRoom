@@ -1,8 +1,8 @@
 import React from 'react';
-import FormRow from '../../../ui/FormRow';
+import FormRow from '../../../src/ui/FormRow';
 import { useUpdateSetting } from './useUpdateSetting';
 import { useSetting } from './useSetting';
-import Spinner from '../../../ui/Spinner';
+import Spinner from '../../../src/ui/Spinner';
 
 export default function UpdateSettingForm() {
   const {

@@ -1,4 +1,5 @@
-import UpdateSettingForm from '../features/cabins/setting/UpdateSettingForm';
+import UpdateSettingForm from '../features/setting/UpdateSettingForm';
+
 function Settings() {
   return (
     <div className="mt-12 flex flex-col gap-12">

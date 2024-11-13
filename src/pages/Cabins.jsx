@@ -3,12 +3,10 @@ import Spinner from '../ui/Spinner';
 import CabinHeaderRow from '../features/cabins/CabinHeaderRow';
 import CabinHeader from '../features/cabins/CabinHeader';
 import CreateCabinForm from '../features/cabins/CreateCabinForm';
-import { useState } from 'react';
 import { useCabins } from '../features/cabins/useCabins';
+import AddNewCabin from '../features/cabins/AddNewCabin';
 
 function Cabins() {
-  const [showForm, setShowForm] = useState(false);
-
   const { isLoading, cabins } = useCabins();
 
   if (isLoading) return <Spinner />;
@@ -20,14 +18,8 @@ function Cabins() {
         {cabins.map((cabin) => (
           <CabinRow cabin={cabin} key={cabin.id} />
         ))}
+        <AddNewCabin />
       </div>
-      <button
-        onClick={() => setShowForm((show) => !show)}
-        className="my-4 w-full rounded-md border-2 border-blue-900 bg-blue-500 px-4 py-4 text-xl font-semibold text-white hover:bg-blue-400"
-      >
-        Add new Cabin
-      </button>
-      {showForm && <CreateCabinForm />}
     </>
   );
 }
