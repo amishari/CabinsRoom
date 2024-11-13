@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import FormRow from '../../ui/FormRow';
 import { useCreateCabin } from './useCreateCabin';
 import { useEditCabin } from './useEditCabin';
-function CreateCabinForm({ cabinToEdit = {} }) {
+function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   const { id: editId, ...editValues } = cabinToEdit;
   const isEditSession = Boolean(editId);
   const { register, handleSubmit, reset, getValues, formState } = useForm({
@@ -23,6 +23,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
         {
           onSuccess: (data) => {
             reset();
+            onCloseModal?.();
           },
         },
       );
@@ -32,6 +33,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
         {
           onSuccess: (data) => {
             reset();
+            onCloseModal?.();
           },
         },
       );
@@ -40,7 +42,11 @@ function CreateCabinForm({ cabinToEdit = {} }) {
   return (
     <div>
       <form
-        className="rounded-md border-2 border-gray-200 bg-gray-50 px-16 py-10"
+        className={
+          onCloseModal
+            ? 'w-[80rem] overflow-y-hidden text-2xl'
+            : `rounded-md border-2 border-gray-200 bg-gray-50 px-16 py-10`
+        }
         onSubmit={handleSubmit(onSubmit, onError)}
       >
         <FormRow label="Cabin name" errors={errors?.name?.message}>
@@ -115,7 +121,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
 
         <FormRow label={'Picture'} errors={errors?.image?.message}>
           <input
-            className="mr-5 cursor-pointer bg-zinc-300 px-3 py-5 font-semibold text-gray-700 transition-colors duration-1000 hover:bg-gray-200 hover:text-blue-500"
+            className="px-4 py-2 text-xl file:rounded-xl file:border-2 file:bg-blue-500 file:px-4 file:py-2 file:text-xl file:font-semibold file:text-white hover:file:bg-blue-200 hover:file:text-blue-700"
             name="picture"
             type="file"
             id="image"
@@ -130,6 +136,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
           <button
             className="rounded-xl border-2 border-gray-200 bg-gray-100 px-4 py-2 text-xl font-semibold text-gray-950 hover:bg-gray-400"
             type="reset"
+            onClick={() => onCloseModal?.()}
           >
             Cancel
           </button>
