@@ -1,4 +1,11 @@
-import { cloneElement, createContext, useContext, useState } from 'react';
+import {
+  cloneElement,
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { createPortal } from 'react-dom';
 import { HiXMark } from 'react-icons/hi2';
 
@@ -21,6 +28,21 @@ function Open({ children, opens: opensWindowName }) {
 
 function Window({ children, name }) {
   const { openName, close } = useContext(ModalContext);
+  const ref = useRef();
+
+  useEffect(
+    function () {
+      function handleClick(e) {
+        if (ref.current && ref.current.contains(e.target)) {
+          console.log('clicked');
+          close();
+        }
+      }
+      document.addEventListener('click', handleClick);
+      return () => document.removeEventListener('click', handleClick, true);
+    },
+    [close],
+  );
   if (name !== openName) return null;
   return createPortal(
     <div className="z-1000 fixed left-0 top-0 h-screen w-full bg-white bg-opacity-10 backdrop-blur-sm transition duration-500">
