@@ -1,5 +1,6 @@
 import Modal from '../../ui/Modal';
 import CreateCabinForm from './CreateCabinForm';
+import Menus from '../../ui/Menus';
 
 export default function AddNewCabin() {
   return (
