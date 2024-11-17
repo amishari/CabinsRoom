@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from 'react';
-import { createPortal } from 'react-dom';
 import { HiEllipsisVertical } from 'react-icons/hi2';
+import { useOutsideClick } from '../hooks/useOutsideClick';
+import { createPortal } from 'react-dom';
 
 const MenusContext = createContext();
 function Menus({ children }) {
@@ -22,8 +23,7 @@ function Menu({ children }) {
   return <div className="flex items-center justify-end">{children}</div>;
 }
 function Toggle({ id }) {
-  const { open, close, openId, position, setPosition } =
-    useContext(MenusContext);
+  const { open, close, openId, setPosition } = useContext(MenusContext);
   function handleClick(e) {
     openId === '' || openId !== id ? open(id) : close();
     const rect = e.target.closest('button').getBoundingClientRect();
@@ -31,7 +31,6 @@ function Toggle({ id }) {
       x: window.innerWidth - rect.width - rect.x,
       y: rect.y + rect.height + 8,
     });
-    console.log(rect);
   }
   return (
     <button
@@ -42,22 +41,36 @@ function Toggle({ id }) {
     </button>
   );
 }
-function List({ id, children, position }) {
-  const { openId } = useContext(MenusContext);
+function List({ id, children }) {
+  const { openId, position, close } = useContext(MenusContext);
+  const ref = useOutsideClick(close);
   if (openId !== id) return null;
-  return createPortal(
-    <ul className="fixed rounded-md bg-slate-500 shadow-md" position={position}>
+  return (
+    <ul
+      className="fixed rounded-md bg-white shadow-md"
+      position={position}
+      ref={ref}
+    >
       {children}
-    </ul>,
-    document.body,
+    </ul>
   );
 }
-function Button({ children }) {
-  // const { close } = useContext(MenusContext);
+
+function Button({ children, icon, onClick }) {
+  const { close } = useContext(MenusContext);
+
+  function handleClick() {
+    onClick?.();
+    close();
+  }
 
   return (
     <li>
-      <button className="z-40 flex w-full items-center gap-4 border-none p-5 text-left text-lg text-gray-900 transition-all duration-200 hover:bg-gray-100">
+      <button
+        onClick={handleClick}
+        icon={icon}
+        className="z-40 flex w-full items-center gap-4 border-none p-5 text-left text-lg text-gray-900 transition-all duration-200 hover:bg-gray-100"
+      >
         <span>{children}</span>
       </button>
     </li>
