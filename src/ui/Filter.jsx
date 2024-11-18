@@ -9,7 +9,7 @@ function Filter() {
     setSearchParams(searchParams);
   }
   return (
-    <div className="flex gap-1.5 rounded-sm border-2 bg-white p-1.5 shadow-sm">
+    <div className="flex gap-1.5 rounded-xl border-2 bg-white p-1.5 shadow-lg">
       <button onClick={() => handleClick('all')} className={but}>
         All
       </button>
@@ -17,7 +17,7 @@ function Filter() {
         No Discount
       </button>
       <button onClick={() => handleClick('with-discount')} className={but}>
-        With Discount
+        with Discount
       </button>
     </div>
   );

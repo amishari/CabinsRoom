@@ -69,7 +69,7 @@ function Button({ children, icon, onClick }) {
       <button
         onClick={handleClick}
         icon={icon}
-        className="z-40 flex w-full items-center gap-4 border-none p-5 text-left text-lg text-gray-900 transition-all duration-200 hover:bg-gray-100"
+        className="z-40 flex w-full items-center gap-4 border-none p-5 text-left text-lg font-semibold text-gray-900 transition-all duration-200 hover:bg-gray-100"
       >
         {icon}
         <span>{children}</span>
