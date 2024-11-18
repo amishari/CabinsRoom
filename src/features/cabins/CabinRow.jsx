@@ -6,7 +6,7 @@ import Modal from '../../ui/Modal';
 import ConfirmDelete from '../../ui/ConfirmDelete';
 import Menus from '../../ui/Menus';
 
-function CabinRow({ cabin }) {
+function CabinRow({ data }) {
   const { isDeleting, deleteCabin } = useDeleteCabin();
   const { isCreating, createCabin } = useCreateCabin();
   const {
@@ -17,7 +17,7 @@ function CabinRow({ cabin }) {
     discount,
     description,
     image,
-  } = cabin;
+  } = data;
 
   function handleDuplicate() {
     createCabin({
@@ -67,7 +67,7 @@ function CabinRow({ cabin }) {
             </Menus.List>
 
             <Modal.Window name="edit">
-              <CreateCabinForm cabinToEdit={cabin} />
+              <CreateCabinForm cabinToEdit={data} />
             </Modal.Window>
 
             <Modal.Window name="delete">
