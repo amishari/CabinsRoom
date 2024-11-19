@@ -22,12 +22,20 @@ function Cabins() {
     filteredCabins = cabins.filter((cabin) => cabin.discount === 0);
   if (filterValue === 'with-discount')
     filteredCabins = cabins.filter((cabin) => cabin.discount > 0);
+  //2 ) Sort
+  const sortBy = searchParams.get('sortBy') || 'startDate-asc';
+  const [field, direction] = sortBy.split('-');
+  const modifier = direction === 'asc' ? -1 : 1;
+  const sortedCabins = filteredCabins.sort(
+    (a, b) => (a[field] - b[field]) * modifier,
+  );
+
   return (
     <Menus>
       <div className="border-gray-150 overflow-hidden rounded-lg border-2 border-gray-200 bg-gray-50 px-9 py-5 text-2xl">
         <CabinHeader />
         <CabinHeaderRow />
-        {filteredCabins.map((cabin) => (
+        {sortedCabins.map((cabin) => (
           <CabinRow data={cabin} key={cabin.id} />
         ))}
         <AddNewCabin />
