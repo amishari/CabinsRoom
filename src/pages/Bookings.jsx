@@ -10,13 +10,15 @@ function Bookings() {
 
   if (isLoading) return <Spinner />;
   return (
-    <div className="overflow-hidden rounded-lg border-2 border-gray-300 bg-gray-50 px-0 py-5 text-2xl">
-      <BookingHeader />
-      <BookingHeaderRow />
-      {bookings.map((booking) => (
-        <BookingRow data={booking} key={booking.id} />
-      ))}
-    </div>
+    <>
+      <div className="overflow-hidden rounded-lg border-2 border-gray-300 bg-gray-50 px-0 py-5 text-2xl">
+        <BookingHeader />
+        <BookingHeaderRow />
+        {bookings.map((booking) => (
+          <BookingRow data={booking} key={booking.id} />
+        ))}
+      </div>
+    </>
   );
 }
 export default Bookings;
