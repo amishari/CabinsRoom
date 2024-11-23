@@ -55,12 +55,13 @@ async function createBookings() {
   const finalBookings = bookings.map((booking) => {
     // Here relying on the order of cabins, as they don't have and ID yet
     const cabin = cabins.at(booking.cabinId - 1);
-    const numNights = subtractDates(booking.endDate, booking.startDate);
+    let numNights = subtractDates(booking.endDate, booking.startDate);
+
     const cabinPrice = numNights * (cabin.regularPrice - cabin.discount);
-    const extrasPrice = booking.hasBreakfast
-      ? numNights * 15 * booking.numGuests
+    const extraPrice = booking.hasBreakfast
+      ? numNights * 15 * booking.numGuest
       : 0; // hardcoded breakfast price
-    const totalPrice = cabinPrice + extrasPrice;
+    const totalprice = cabinPrice + extraPrice;
 
     let status;
     if (
@@ -85,8 +86,8 @@ async function createBookings() {
       ...booking,
       numNights,
       cabinPrice,
-      extrasPrice,
-      totalPrice,
+      extraPrice,
+      totalprice,
       guestId: allGuestIds.at(booking.guestId - 1),
       cabinId: allCabinIds.at(booking.cabinId - 1),
       status,
@@ -134,9 +135,8 @@ export function Uploader() {
         textAlign: 'center',
       }}
     >
-      <h3>DEV AREA</h3>
-
       <button
+        className="border-2 bg-blue-100 text-gray-900 hover:bg-blue-400"
         onClick={uploadAll}
         // To prevent accidental clicks. Remove to run once!
         disabled={isLoading}
@@ -149,7 +149,11 @@ export function Uploader() {
         <em>(Cabin images need to be uploaded manually)</em>
       </p>
       <hr /> */}
-      <button onClick={uploadBookings} disabled={isLoading}>
+      <button
+        onClick={() => uploadBookings()}
+        disabled={isLoading}
+        className="text-gray700 border-2 bg-blue-100 text-gray-900 hover:bg-blue-400"
+      >
         Upload CURRENT bookings
       </button>
       {/* <p>You can run this every day you develop the app</p> */}
