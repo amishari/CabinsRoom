@@ -2,7 +2,11 @@
 import supabase from './supabase';
 
 export async function getBookings() {
-  let { data, error } = await supabase.from('bookings').select('*');
+  let { data, error } = await supabase
+    .from('bookings')
+    .select(
+      'id, created_at, startDate, endDate, numNights, numGuest, status, totalprice, cabins(name), guests(fullName, email)',
+    );
   if (error) {
     console.error(error);
     throw new Error('Bookings could not be loaded');
