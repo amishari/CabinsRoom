@@ -7,6 +7,7 @@ import {
 } from 'react-icons/hi2';
 import Logo from './Logo';
 import { Link } from 'react-router-dom';
+import { Uploader } from '../data/Uploader';
 function Sidebar() {
   const style =
     'flex items-center gap-5 px-4 py-9 text-2xl font-semibold text-gray-600 transition-all duration-200 visited:bg-gray-50 hover:text-gray-800 active:bg-gray-200 ';
@@ -34,6 +35,7 @@ function Sidebar() {
           <HiOutlineCog6Tooth />
           <span>Settings</span>
         </Link>
+        <Uploader />
       </ul>
     </div>
   );
