@@ -16,9 +16,9 @@ function BookingRow({
   },
 }) {
   const tag = {
-    unconfirmed: 'blue',
-    'checked-in': 'green',
-    'checked-out': 'red',
+    unconfirmed: '#bfdbfe',
+    'checked-in': '#bbf7d0',
+    'checked-out': '#fecaca',
   };
 
   return (
@@ -45,7 +45,8 @@ function BookingRow({
 
       <div>
         <span
-          className={`w-fit text-${tag[status]}-500 rounded-full border-2 px-3 py-1 text-lg uppercase bg-${tag[status]}-200`}
+          style={{ backgroundColor: `${tag[status]}` }} //in tailwind this is the way dynamically
+          className={`w-fit rounded-full border-2 px-3 py-1 text-lg uppercase`}
         >
           {status.replace('-', ' ')}
         </span>
