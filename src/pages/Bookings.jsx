@@ -6,7 +6,6 @@ import Spinner from '../ui/Spinner';
 
 function Bookings() {
   const { isLoading, bookings } = useBookings();
-  console.log(bookings);
 
   if (isLoading) return <Spinner />;
   return (
