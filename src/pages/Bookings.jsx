@@ -1,3 +1,4 @@
+import BookingFooter from '../features/bookings/BookingFooter';
 import BookingHeader from '../features/bookings/BookingHeader';
 import BookingHeaderRow from '../features/bookings/BookingHeaderRow';
 import BookingRow from '../features/bookings/BookingRow';
@@ -16,6 +17,7 @@ function Bookings() {
         {bookings.map((booking) => (
           <BookingRow data={booking} key={booking.id} />
         ))}
+        <BookingFooter />
       </div>
     </>
   );
