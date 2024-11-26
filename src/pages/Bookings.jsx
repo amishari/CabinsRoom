@@ -6,7 +6,7 @@ import { useBookings } from '../features/bookings/useBookings';
 import Spinner from '../ui/Spinner';
 
 function Bookings() {
-  const { isLoading, bookings } = useBookings();
+  const { isLoading, bookings, count } = useBookings();
 
   if (isLoading) return <Spinner />;
   return (
@@ -17,7 +17,7 @@ function Bookings() {
         {bookings.map((booking) => (
           <BookingRow data={booking} key={booking.id} />
         ))}
-        <BookingFooter />
+        <BookingFooter count={count} />
       </div>
     </>
   );
