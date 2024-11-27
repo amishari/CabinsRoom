@@ -6,7 +6,7 @@ function BookingHeaderRow() {
       <div>Date</div>
       <div>Status</div>
       <div>Amount</div>
-      <div>...</div>
+      <div></div>
     </div>
   );
 }

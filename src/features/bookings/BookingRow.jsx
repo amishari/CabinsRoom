@@ -1,5 +1,8 @@
 import { formatDistanceFromNow } from '../../utils/helpers';
 import { format, isToday } from 'date-fns';
+import Menus from '../../ui/Menus';
+import { HiEye } from 'react-icons/hi2';
+import { useNavigate } from 'react-router-dom';
 
 function BookingRow({
   data: {
@@ -15,6 +18,8 @@ function BookingRow({
     cabins: { name: cabinName },
   },
 }) {
+  const navigate = useNavigate();
+
   const tag = {
     unconfirmed: '#bfdbfe',
     'checked-in': '#bbf7d0',
@@ -52,7 +57,19 @@ function BookingRow({
         </span>
       </div>
       <div className="font-semibold">{totalprice}</div>
-      <div></div>
+      <div>
+        <Menus.Menu>
+          <Menus.Toggle id={bookingId} />
+          <Menus.List id={bookingId}>
+            <Menus.Button
+              icon={<HiEye className="h-6 w-6" />}
+              onClick={() => console.log('123')}
+            >
+              See Details
+            </Menus.Button>
+          </Menus.List>
+        </Menus.Menu>
+      </div>
     </div>
   );
 }

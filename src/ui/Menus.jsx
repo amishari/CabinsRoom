@@ -4,18 +4,19 @@ import { useOutsideClick } from '../hooks/useOutsideClick';
 import { createPortal } from 'react-dom';
 
 const MenusContext = createContext();
+
 function Menus({ children }) {
   const [openId, setOpenId] = useState('');
   const [position, setPosition] = useState(null);
 
-  const close = () => setOpenId('');
+  const close = () => setOpenId(null); // Close the menu
   const open = setOpenId;
 
   return (
     <MenusContext.Provider
       value={{ openId, close, open, position, setPosition }}
     >
-      <div>{children}</div>
+      {children}
     </MenusContext.Provider>
   );
 }
@@ -23,15 +24,20 @@ function Menu({ children }) {
   return <div className="flex items-center justify-end">{children}</div>;
 }
 function Toggle({ id }) {
-  const { open, close, openId, setPosition } = useContext(MenusContext);
+  const { openId, close, open, setPosition } = useContext(MenusContext);
   function handleClick(e) {
-    openId === '' || openId !== id ? open(id) : close();
-    const rect = e.target.closest('button').getBoundingClientRect();
+    const button = e.target.closest('button');
+    if (!button) return; // Safety check
+    const rect = button.getBoundingClientRect();
     setPosition({
       x: window.innerWidth - rect.width - rect.x,
       y: rect.y + rect.height + 8,
     });
+
+    // Toggle menu open/close
+    openId === id ? close() : open(id);
   }
+
   return (
     <button
       onClick={handleClick}
@@ -45,6 +51,7 @@ function List({ id, children }) {
   const { openId, position, close } = useContext(MenusContext);
   const ref = useOutsideClick(close);
   if (openId !== id) return null;
+
   return (
     <ul
       className="fixed rounded-md bg-white shadow-md"

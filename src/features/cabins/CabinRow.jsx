@@ -33,7 +33,7 @@ function CabinRow({ data }) {
     <div className="grid grid-cols-[0.6fr_1.8fr_2.2fr_1fr_1fr_1fr] justify-items-start gap-10 rounded-lg border-2 border-b border-gray-200 px-10 py-6 last:border-b-0">
       <img
         className="aspect-[3/2] w-28 scale-150 object-cover object-center"
-        src={image}
+        srcSet={image}
         alt="not"
         // srcSet=""
       />

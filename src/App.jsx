@@ -5,6 +5,7 @@ import ApplyLayout from './ui/ApplyLayout';
 import Error from './Error';
 import Dashboard from './pages/Dashboard';
 import Bookings from './pages/Bookings';
+import Booking from './pages/Bookings';
 import Cabins from './pages/Cabins';
 import Settings from './pages/Settings';
 import Users from './pages/Users';
@@ -26,6 +27,11 @@ const router = createBrowserRouter([
         element: <Bookings />,
         path: '/bookings',
       },
+      {
+        element: <Booking />,
+        path: 'bookings/:bookingId',
+      },
+
       {
         element: <Cabins />,
         path: '/cabins',
