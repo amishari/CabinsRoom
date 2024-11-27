@@ -3,7 +3,7 @@ import { HiEllipsisVertical } from 'react-icons/hi2';
 import { useOutsideClick } from '../hooks/useOutsideClick';
 import { createPortal } from 'react-dom';
 
-const MenusContext = createContext();
+const MenusContext = createContext({});
 
 function Menus({ children }) {
   const [openId, setOpenId] = useState('');

@@ -4,20 +4,21 @@ import Menus from '../../ui/Menus';
 import { HiEye } from 'react-icons/hi2';
 import { useNavigate } from 'react-router-dom';
 
-function BookingRow({
-  data: {
+function BookingRow({ data }) {
+  const {
     id: bookingId,
     created_at,
     startDate,
     endDate,
     numNights,
-    numGuests,
+    numGuest,
     totalprice,
     status,
     guests: { fullName: guestName, email },
     cabins: { name: cabinName },
-  },
-}) {
+  } = data;
+  console.log(data.status);
+
   const navigate = useNavigate();
 
   const tag = {
