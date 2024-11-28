@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useBooking } from './useBooking';
 import ButtonGroup from '../../ui/ButtonGroup';
 import { HiArrowUpOnSquare } from 'react-icons/hi2';
+import Spinner from '../../ui/Spinner';
 
 function BookingDetail() {
   const { booking, isLoading } = useBooking();
@@ -35,7 +36,7 @@ function BookingDetail() {
           &larr; Back
         </button>
       </div>
-      <BookingDataBox />
+      {/* <BookingDataBox /> */}
       <ButtonGroup>
         <button className="rounded-sm border-0 shadow-sm">Check-in</button>
         <button className="rounded-sm border-0 shadow-sm">
