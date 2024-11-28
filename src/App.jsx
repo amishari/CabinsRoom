@@ -5,11 +5,12 @@ import ApplyLayout from './ui/ApplyLayout';
 import Error from './Error';
 import Dashboard from './pages/Dashboard';
 import Bookings from './pages/Bookings';
-import Booking from './pages/Bookings';
+import Booking from './pages/Booking';
 import Cabins from './pages/Cabins';
 import Settings from './pages/Settings';
 import Users from './pages/Users';
 import Login from './pages/Login';
+import PageNotFound from './pages/PageNotFound';
 
 import './index.css';
 import { Toaster } from 'react-hot-toast';
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
   {
     element: <Login />,
     path: '/login',
+  },
+  {
+    element: <PageNotFound />,
+    path: '*',
   },
 ]);
 
