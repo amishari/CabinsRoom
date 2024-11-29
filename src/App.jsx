@@ -14,6 +14,7 @@ import PageNotFound from './pages/PageNotFound';
 
 import './index.css';
 import { Toaster } from 'react-hot-toast';
+import Checkin from './pages/Checkin';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         element: <Booking />,
         path: 'bookings/:bookingId',
+      },
+      {
+        path: 'checkin/:bookingId',
+        element: <Checkin />,
       },
 
       {

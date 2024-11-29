@@ -12,7 +12,7 @@ export function useBooking() {
   } = useQuery({
     queryKey: ['booking', bookingId],
     queryFn: () => getBooking(bookingId),
-    retry: false, // as default Reacr Query fetch data 3 times in case og fails, by this no retrying
+    // retry: false, // as default Reacr Query fetch data 3 times in case og fails, by this no retrying
   });
 
   return { isLoading, error, booking };

@@ -1,8 +1,13 @@
 import { formatDistanceFromNow } from '../../utils/helpers';
 import { format, isToday } from 'date-fns';
 import Menus from '../../ui/Menus';
-import { HiEye } from 'react-icons/hi2';
+import {
+  HiArrowDownOnSquare,
+  HiArrowDownOnSquareStack,
+  HiEye,
+} from 'react-icons/hi2';
 import { useNavigate } from 'react-router-dom';
+import { HiArrowCircleDown } from 'react-icons/hi';
 
 function BookingRow({ data }) {
   const {
@@ -66,6 +71,14 @@ function BookingRow({ data }) {
               >
                 See Details
               </Menus.Button>
+              {status === 'unconfirmed' && (
+                <Menus.Button
+                  icon={<HiArrowDownOnSquare className="h-6 w-6" />}
+                  onClick={() => navigate(`/checkin/${bookingId}`)}
+                >
+                  Check-in
+                </Menus.Button>
+              )}
             </Menus.List>
           </Menus.Menu>
         </div>

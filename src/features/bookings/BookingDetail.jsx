@@ -39,7 +39,7 @@ function BookingDetail() {
 
         <button
           onClick={() => navigate(-1)}
-          className="rounded-lg border-0 bg-white p-2 text-center text-xl font-semibold text-indigo-500 transition-all duration-300 hover:bg-indigo-300 active:bg-indigo-700"
+          className="rounded-lg border-0 bg-white p-2 text-center text-2xl font-semibold text-indigo-500 transition-all duration-300 hover:bg-indigo-300 active:bg-indigo-700"
         >
           &larr; Back
         </button>
@@ -58,7 +58,10 @@ function BookingDetail() {
           <HiTrash className="h-7 w-7" />
           Delete
         </button>
-        <button className="rounded-lg border-2 border-gray-200 bg-white px-2 py-2 text-gray-600 shadow-sm hover:bg-gray-100">
+        <button
+          onClick={() => navigate(-1)}
+          className="rounded-lg border-2 border-gray-200 bg-white px-2 py-2 text-gray-600 shadow-sm hover:bg-gray-100"
+        >
           Back
         </button>
       </ButtonGroup>
