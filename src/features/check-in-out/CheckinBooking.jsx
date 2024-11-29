@@ -2,7 +2,7 @@ import Spinner from '../../ui/Spinner';
 import BookingDataBox from '../bookings/BookingDataBox';
 import { useBooking } from '../bookings/useBooking';
 import { useNavigate } from 'react-router-dom';
-
+import ButtonGroup from '../../ui/ButtonGroup';
 
 function CheckinBooking() {
   const { booking, isLoading } = useBooking();
@@ -24,12 +24,19 @@ function CheckinBooking() {
             Check in booking #{bookingId}
           </h1>
         </div>
-        <button onClick={()=>navigate(-1)}
-         className="rounded-lg border-0 bg-white p-2 text-center text-2xl font-semibold text-indigo-500 transition-all duration-300 hover:bg-indigo-300 active:bg-indigo-700" >
-          &larr; Back
-        </button>
-        {/* <BookingDataBox booking={booking} /> */}
       </div>
+      <BookingDataBox booking={booking} />
+      <ButtonGroup>
+        <button className="border- rounded-sm bg-indigo-600 px-2 py-2 text-indigo-100 shadow-lg hover:bg-indigo-700">
+          Check in booking #{bookingId}
+        </button>
+        <button
+          onClick={() => navigate(-1)}
+          className="rounded-lg border-2 border-gray-200 bg-white px-2 py-2 text-gray-600 shadow-sm hover:bg-gray-100"
+        >
+          Back
+        </button>
+      </ButtonGroup>
     </div>
   );
 }
