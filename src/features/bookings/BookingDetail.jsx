@@ -1,7 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { useBooking } from './useBooking';
 import ButtonGroup from '../../ui/ButtonGroup';
-import { HiArrowUpOnSquare } from 'react-icons/hi2';
+import {
+  HiArrowDownOnSquare,
+  HiArrowUpOnSquare,
+  HiTrash,
+} from 'react-icons/hi2';
 import Spinner from '../../ui/Spinner';
 
 function BookingDetail() {
@@ -13,9 +17,9 @@ function BookingDetail() {
   const { status, id: bookingId } = booking;
 
   const tag = {
-    unconfirmed: 'blue',
-    'checked-in': 'green',
-    'checked-out': 'silver',
+    unconfirmed: '#bfdbfe',
+    'checked-in': '#bbf7d0',
+    'checked-out': '#fecaca',
   };
   return (
     <div>
@@ -32,20 +36,25 @@ function BookingDetail() {
           </span>
         </div>
 
-        <button className="rounded-sm border-0 bg-none text-center font-semibold text-indigo-600 transition-all duration-300 hover:bg-indigo-700 active:bg-indigo-700">
+        <button className="rounded-sm border-0 bg-white text-center font-semibold text-indigo-500 transition-all duration-300 hover:bg-indigo-300 active:bg-indigo-700">
           &larr; Back
         </button>
       </div>
       {/* <BookingDataBox /> */}
       <ButtonGroup>
-        <button className="rounded-sm border-0 shadow-sm">Check-in</button>
-        <button className="rounded-sm border-0 shadow-sm">
-          <HiArrowUpOnSquare /> checkout
+        <button className="flex items-center justify-between gap-4 rounded-lg border-2 px-2 py-2 shadow-lg hover:bg-green-100">
+          <HiArrowDownOnSquare className="h-7 w-7 text-2xl text-green-300" />
+          Check-in
         </button>
-        <button className="rounded-sm border-0 bg-red-700 text-red-100 shadow-sm hover:bg-red-800">
-          Delete booking
+        <button className="flex items-center justify-between gap-4 rounded-lg border-2 px-2 py-2 shadow-lg hover:bg-red-100">
+          <HiArrowUpOnSquare className="h-7 w-7 text-2xl text-red-300" />{' '}
+          Check-Out
         </button>
-        <button className="rounded-sm border-2 border-gray-200 bg-white text-gray-600 shadow-sm hover:bg-gray-100">
+        <button className="flex items-center justify-between gap-4 rounded-lg border-2 bg-red-400 px-2 py-2 text-white shadow-lg hover:bg-red-600">
+          <HiTrash className="h-7 w-7" />
+          Delete
+        </button>
+        <button className="rounded-lg border-2 border-gray-200 bg-white px-2 py-2 text-gray-600 shadow-sm hover:bg-gray-100">
           Back
         </button>
       </ButtonGroup>
