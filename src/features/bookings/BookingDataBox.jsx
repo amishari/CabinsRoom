@@ -14,7 +14,7 @@ export default function BookingDataBox({ booking }) {
     startDate,
     endDate,
     numNights,
-    numGuests,
+    numGuest,
     cabinPrice,
     extraPrice,
     totalprice,
@@ -60,10 +60,10 @@ export default function BookingDataBox({ booking }) {
           )}
           <p className="font-semibold text-gray-700">
             {' '}
-            {guestName} {numGuests > 1 ? `+ ${numGuests - 1} guests` : ''}
+            {guestName} {numGuest > 1 ? `+ ${numGuest - 1} guests` : ''}
           </p>
           <span>&bull;</span>
-          <p>email</p>
+          <p>{email}</p>
           <span>&bull;</span>
           <p>National ID {nationalID}</p>
         </div>
