@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getBooking } from '../../services/apiBooking';
 
 export function useBooking() {
-  const { bookingId } = useParams();
+  const { bookingId } = useParams(); // read id from url
 
   const {
     isLoading,
@@ -12,7 +12,7 @@ export function useBooking() {
   } = useQuery({
     queryKey: ['booking', bookingId],
     queryFn: () => getBooking(bookingId),
-    retry: false,
+    retry: false, // as default Reacr Query fetch data 3 times in case og fails, by this no retrying
   });
 
   return { isLoading, error, booking };

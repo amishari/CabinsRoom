@@ -1,4 +1,4 @@
-function DeleteItem({ icon, label, children }) {
+function DataItem({ icon, label, children }) {
   return (
     <div className="flex items-center gap-6 px-0 py-3">
       <span className="flex items-center gap-[0.8rem] font-semibold">
@@ -9,4 +9,4 @@ function DeleteItem({ icon, label, children }) {
     </div>
   );
 }
-export default DeleteItem;
+export default DataItem;

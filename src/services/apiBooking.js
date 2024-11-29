@@ -32,8 +32,8 @@ export async function getBooking(id) {
   const { data, error } = await supabase
     .from('bookings')
     .select('*, cabins(*), guests(*)')
-    .eq('id', id)
-    .single();
+    .eq('id', id) //return an array
+    .single(); // we reach to single obj of the array
 
   if (error) {
     console.error(error);

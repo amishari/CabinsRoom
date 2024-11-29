@@ -7,6 +7,7 @@ import {
   HiTrash,
 } from 'react-icons/hi2';
 import Spinner from '../../ui/Spinner';
+import BookingDataBox from './BookingDataBox';
 
 function BookingDetail() {
   const { booking, isLoading } = useBooking();
@@ -23,7 +24,7 @@ function BookingDetail() {
   };
   return (
     <div>
-      <div className="flex items-center justify-between">
+      <div className="mb-8 flex items-center justify-between">
         <div className="flex items-center gap-10">
           <h1 className="text-5xl font-semibold leading-6">
             Booking #{bookingId}
@@ -36,11 +37,14 @@ function BookingDetail() {
           </span>
         </div>
 
-        <button className="rounded-sm border-0 bg-white text-center font-semibold text-indigo-500 transition-all duration-300 hover:bg-indigo-300 active:bg-indigo-700">
+        <button
+          onClick={() => navigate(-1)}
+          className="rounded-lg border-0 bg-white p-2 text-center text-xl font-semibold text-indigo-500 transition-all duration-300 hover:bg-indigo-300 active:bg-indigo-700"
+        >
           &larr; Back
         </button>
       </div>
-      {/* <BookingDataBox /> */}
+      <BookingDataBox booking={booking} />
       <ButtonGroup>
         <button className="flex items-center justify-between gap-4 rounded-lg border-2 px-2 py-2 shadow-lg hover:bg-green-100">
           <HiArrowDownOnSquare className="h-7 w-7 text-2xl text-green-300" />
