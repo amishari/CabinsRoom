@@ -52,7 +52,7 @@ function CheckinBooking() {
         </div>
       </div>
       <BookingDataBox booking={booking} />
-      <div className="bg-silver-100 flex flex-col gap-6 rounded-md border-2 border-gray-100 px-10 py-5 shadow-md">
+      <div className="flex flex-col gap-6 rounded-md border-2 border-gray-100 px-10 py-5 shadow-md">
         {!hasBreakfast && (
           <CheckBox
             checked={addBreakfast}

@@ -6,6 +6,7 @@ function Filter({ filterField, options }) {
     'active:bg-blue-300 hover:bg-blue-600 hover:text-brand-50 active:text-brand-50 rounded-xl border-none bg-white px-[0.8rem] py-[0.44rem] text-[1.4rem] font-semibold transition-all duration-400 disabled:opacity-50';
   function handleClick(value) {
     searchParams.set(filterField, value);
+    if (searchParams.get('page')) searchParams.set('page', 1);
     setSearchParams(searchParams);
   }
   return (

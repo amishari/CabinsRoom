@@ -13,7 +13,7 @@ export default function Checkbox({
         disabled={disabled}
         onChange={onChange}
         checked={checked}
-        className="h-7 w-7 origin-left text-indigo-600 accent-blue-500 outline-offset-4 disabled:accent-indigo-600"
+        className="h-12 w-12 origin-left text-indigo-600 accent-blue-500 outline-offset-4 disabled:accent-indigo-600"
       />
       <label
         className="flex flex-1 items-center gap-6"
