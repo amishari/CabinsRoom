@@ -31,7 +31,7 @@ export default function BookingDataBox({ booking }) {
     cabins: { name: cabinName },
   } = booking;
   return (
-    <section className="flex flex-col gap-10 overflow-hidden rounded-md border-2 border-gray-100 bg-white">
+    <section className="mb-8 flex flex-col gap-10 overflow-hidden rounded-md border-2 border-gray-100 bg-white shadow-md">
       <header className="flex items-center justify-between bg-indigo-500 px-16 py-8 text-3xl font-semibold text-indigo-100">
         <div className="flex items-center gap-6 text-3xl font-semibold">
           <HiOutlineHomeModern className="h-12 w-12" />
@@ -53,7 +53,7 @@ export default function BookingDataBox({ booking }) {
         <div className="mb-[1.6rem] flex items-center gap-[1.2rem] text-gray-500">
           {countryFlag && (
             <img
-              className="border-bray-100 block max-w-8 border-2"
+              className="border-bray-100 block max-w-10 border-2"
               src={countryFlag}
               alt={`Flag of ${nationality}`}
             />
@@ -83,7 +83,7 @@ export default function BookingDataBox({ booking }) {
         >
           {hasBreakfast ? 'Yes' : 'No'}
         </DataItem>
-        <div className="mt-10 flex items-center justify-between rounded-sm px-12 py-7">
+        <div className="mt-10 flex items-center justify-between rounded-sm bg-green-100 px-12 py-7">
           <DataItem icon={<HiOutlineCurrencyDollar />} label={`Total price`}>
             {formatCurrency(totalprice)}
             {hasBreakfast &&
