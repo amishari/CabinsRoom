@@ -4,10 +4,12 @@ import Menus from '../../ui/Menus';
 import {
   HiArrowDownOnSquare,
   HiArrowDownOnSquareStack,
+  HiArrowUpOnSquare,
   HiEye,
 } from 'react-icons/hi2';
 import { useNavigate } from 'react-router-dom';
 import { HiArrowCircleDown } from 'react-icons/hi';
+import { useCheckout } from '../check-in-out/useCheckout';
 
 function BookingRow({ data }) {
   const {
@@ -24,6 +26,7 @@ function BookingRow({ data }) {
   } = data;
 
   const navigate = useNavigate();
+  const { checkout, isCheckingOut } = useCheckout();
 
   const tag = {
     unconfirmed: '#bfdbfe',
@@ -77,6 +80,15 @@ function BookingRow({ data }) {
                   onClick={() => navigate(`/checkin/${bookingId}`)}
                 >
                   Check-in
+                </Menus.Button>
+              )}
+              {status === 'checked-in' && (
+                <Menus.Button
+                  icon={<HiArrowUpOnSquare className="h-6 w-6" />}
+                  onClick={() => checkout(bookingId)}
+                  disabled={isCheckingOut}
+                >
+                  Check-out
                 </Menus.Button>
               )}
             </Menus.List>
