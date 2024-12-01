@@ -1,6 +1,7 @@
 import FormRow from '../../ui/FormRow';
-import Input from '';
+import Input from '../../ui/Input';
 import Button from '../../ui/Button';
+import Form from '../../ui/Form';
 export default function SignupForm() {
   return (
     <Form>
