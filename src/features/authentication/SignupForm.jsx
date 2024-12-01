@@ -2,25 +2,65 @@ import FormRow from '../../ui/FormRow';
 import Input from '../../ui/Input';
 import Button from '../../ui/Button';
 import Form from '../../ui/Form';
+import { useForm } from 'react-hook-form';
+
 export default function SignupForm() {
+  const { register, formState, getValues, handleSubmit, reset } = useForm();
+  const { errors } = formState;
+
   return (
     <Form>
-      <FormRow label="Full name" error={''}>
+      <FormRow
+        label="Full name"
+        error={errors?.fullName?.message}
+        // disabled={isLoading}
+        {...register('fullName', { required: 'is required!' })}
+      >
         <Input type="text" id="fullName" />
       </FormRow>
 
-      <FormRow label="Email address" error={''}>
+      <FormRow
+        label="Email address"
+        error={errors?.email?.message}
+        {...register('email', {
+          required: 'is required!',
+          pattern: { value: /\S+@\S+\.\S+/ },
+          message: 'Invalid Email.Try again',
+        })}
+      >
         <Input type="email" id="email" />
       </FormRow>
 
-      <FormRow label="Password (min 8 characters)" error={''}>
-        <Input type="password" id="password" />
+      <FormRow
+        label="Password (min 8 characters)"
+        error={errors?.password?.message}
+      >
+        <Input
+          type="password"
+          id="password"
+          //   disabled={isLoading}
+          {...register('password', {
+            required: 'This field is required',
+            minLength: {
+              value: 8,
+              message: 'Password needs a minimum of 8 characters',
+            },
+          })}
+        />
       </FormRow>
 
-      <FormRow label="Repeat password" error={''}>
-        <Input type="password" id="passwordConfirm" />
+      <FormRow label="Repeat password" error={errors?.passwordConfirm?.message}>
+        <Input
+          type="password"
+          id="passwordConfirm"
+          //   disabled={isLoading}
+          {...register('passwordConfirm', {
+            required: 'This field is required',
+            validate: (value) =>
+              value === getValues().password || 'Passwords need to match',
+          })}
+        />
       </FormRow>
-
       <FormRow>
         {/* type is an HTML attribute! */}
         <Button variation="secondary" type="reset">
