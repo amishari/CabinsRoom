@@ -11,6 +11,7 @@ import BookingDataBox from './BookingDataBox';
 import Modal from '../../ui/Modal';
 import ConfirmDelete from '../../ui/ConfirmDelete';
 import { useDeleteBooking } from './useDeleteBooking';
+import Button from '../../ui/Button';
 function BookingDetail() {
   const { booking, isLoading } = useBooking();
   const { deleteBooking, isDeleting } = useDeleteBooking();
@@ -63,10 +64,12 @@ function BookingDetail() {
         )}
         <Modal>
           <Modal.Open opens="delete">
-            <button className="flex items-center justify-between gap-4 rounded-lg border-2 px-2 py-2 shadow-lg hover:bg-red-100">
+            {/* <button className="flex items-center justify-between gap-4 rounded-lg border-2 px-2 py-2 shadow-lg hover:bg-red-100"> */}
+            <Button variation="danger" size="small">
               <HiTrash className="h-7 w-7 text-2xl text-red-300" />
               Delete
-            </button>
+            </Button>
+            {/* </button> */}
           </Modal.Open>
 
           <Modal.Window name="delete">

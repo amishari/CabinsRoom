@@ -3,11 +3,12 @@ export default function Button({
   variation = 'primary',
   size = 'medium',
 }) {
-  const defaultClass = 'border-0 rounded-md shadow-sm';
+  const defaultClass =
+    'flex justify-between items-center gap-5 border-0 rounded-md shadow-sm';
   const sizes = {
     small: 'text-xl py-1.5 px-3 uppercase font-semibold text-center',
-    medium: 'text-xxl font-medium py-5 px-7',
-    large: 'py-5 px-10 font-medium text-2xl',
+    medium: 'text-xl font-medium py-4 px-7',
+    large: 'py-4 px-10 font-medium text-2xl',
   };
   const variations = {
     primary: 'text-indigo-50 bg-indigo-600 hover:bg-indigo-700',
