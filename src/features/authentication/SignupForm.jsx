@@ -22,7 +22,6 @@ export default function SignupForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {' '}
       {/* Ensure this is a proper form element */}
       <FormRow label="Full name" error={errors?.fullName?.message}>
         <Input

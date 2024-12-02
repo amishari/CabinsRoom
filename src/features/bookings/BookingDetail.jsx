@@ -8,9 +8,12 @@ import {
 } from 'react-icons/hi2';
 import Spinner from '../../ui/Spinner';
 import BookingDataBox from './BookingDataBox';
-
+import Modal from '../../ui/Modal';
+import ConfirmDelete from '../../ui/ConfirmDelete';
+import { useDeleteBooking } from './useDeleteBooking';
 function BookingDetail() {
   const { booking, isLoading } = useBooking();
+  const { deleteBooking, isDeleting } = useDeleteBooking();
   const navigate = useNavigate();
 
   if (isLoading) return <Spinner />;
@@ -46,18 +49,44 @@ function BookingDetail() {
       </div>
       <BookingDataBox booking={booking} />
       <ButtonGroup>
-        <button className="flex items-center justify-between gap-4 rounded-lg border-2 px-2 py-2 shadow-lg hover:bg-green-100">
-          <HiArrowDownOnSquare className="h-7 w-7 text-2xl text-green-300" />
-          Check-in
-        </button>
-        <button className="flex items-center justify-between gap-4 rounded-lg border-2 px-2 py-2 shadow-lg hover:bg-red-100">
-          <HiArrowUpOnSquare className="h-7 w-7 text-2xl text-red-300" />{' '}
-          Check-Out
-        </button>
-        <button className="flex items-center justify-between gap-4 rounded-lg border-2 bg-red-400 px-2 py-2 text-white shadow-lg hover:bg-red-600">
-          <HiTrash className="h-7 w-7" />
-          Delete
-        </button>
+        {status === 'unconfirmed' && (
+          <button className="flex items-center justify-between gap-4 rounded-lg border-2 px-2 py-2 shadow-lg hover:bg-green-100">
+            <HiArrowDownOnSquare className="h-7 w-7 text-2xl text-green-300" />
+            Check-in
+          </button>
+        )}
+        {status === 'checked-in' && (
+          <button className="flex items-center justify-between gap-4 rounded-lg border-2 px-2 py-2 shadow-lg hover:bg-red-100">
+            <HiArrowUpOnSquare className="h-7 w-7 text-2xl text-red-300" />{' '}
+            Check-out
+          </button>
+        )}
+        <Modal>
+          <Modal.Open opens="delete">
+            <button className="flex items-center justify-between gap-4 rounded-lg border-2 px-2 py-2 shadow-lg hover:bg-red-100">
+              <HiTrash className="h-7 w-7 text-2xl text-red-300" />
+              Delete
+            </button>
+          </Modal.Open>
+
+          <Modal.Window name="delete">
+            <ConfirmDelete
+              resourceName="booking"
+              disabled={isDeleting}
+              onConfirm={() =>
+                deleteBooking(bookingId, {
+                  onSettled: () => navigate(-1),
+                })
+              }
+            />
+          </Modal.Window>
+
+          {/* <button className="flex items-center justify-between gap-4 rounded-lg border-2 bg-red-400 px-2 py-2 text-white shadow-lg hover:bg-red-600">
+            <HiTrash className="h-7 w-7" />
+            Delete
+          </button> */}
+        </Modal>
+
         <button
           onClick={() => navigate(-1)}
           className="rounded-lg border-2 border-gray-200 bg-white px-2 py-2 text-gray-600 shadow-sm hover:bg-gray-100"
