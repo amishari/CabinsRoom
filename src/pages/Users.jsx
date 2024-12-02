@@ -1,6 +1,6 @@
 import SignupForm from '../features/authentication/SignupForm';
 
-function Users() {
+function NewUsers() {
   return (
     <div>
       <h1 className="text-6xl font-semibold">Signup here</h1>
@@ -8,4 +8,4 @@ function Users() {
     </div>
   );
 }
-export default Users;
+export default NewUsers;
