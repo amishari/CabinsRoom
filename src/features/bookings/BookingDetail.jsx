@@ -57,10 +57,11 @@ function BookingDetail() {
           </button>
         )}
         {status === 'checked-in' && (
-          <button className="flex items-center justify-between gap-4 rounded-lg border-2 px-2 py-2 shadow-lg hover:bg-red-100">
-            <HiArrowUpOnSquare className="h-7 w-7 text-2xl text-red-300" />{' '}
+          //className="flex items-center justify-between gap-4 rounded-lg border-2 px-2 py-2 shadow-lg hover:bg-red-100"
+          <Button>
+            <HiArrowUpOnSquare className="h-7 w-7 text-2xl" />
             Check-out
-          </button>
+          </Button>
         )}
         <Modal>
           <Modal.Open opens="delete">
@@ -90,12 +91,12 @@ function BookingDetail() {
           </button> */}
         </Modal>
 
-        <button
+        <Button
           onClick={() => navigate(-1)}
-          className="rounded-lg border-2 border-gray-200 bg-white px-2 py-2 text-gray-600 shadow-sm hover:bg-gray-100"
+          // className="rounded-lg border-2 border-gray-200 bg-white px-2 py-2 text-gray-600 shadow-sm hover:bg-gray-100"
         >
           Back
-        </button>
+        </Button>
       </ButtonGroup>
     </div>
   );
