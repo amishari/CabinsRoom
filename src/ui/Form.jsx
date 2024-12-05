@@ -1,6 +1,12 @@
-export default function Form({ children }) {
+export default function Form({ type = regular, children }) {
   return (
-    <form className="overflow-hidden rounded-md border-2 border-gray-100 bg-white px-16 py-10 text-2xl">
+    <form
+      className={`overflow-hidden text-lg ${
+        type === 'regular'
+          ? 'rounded-md border border-gray-300 bg-gray-100 p-10'
+          : 'w-[80rem]'
+      }`}
+    >
       {children}
     </form>
   );

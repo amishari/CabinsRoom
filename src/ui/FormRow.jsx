@@ -1,15 +1,9 @@
-function FormRow({ label, errors, children }) {
-  const classDiv =
-    'grid grid-cols-[24rem_1fr_1.2fr] items-center gap-10 px-0 py-5 [&:not(:last-child)]:border-2 [&:not(:last-child)]:border-gray-200 ';
+function FormRow({ label, error, children }) {
   return (
     <div className="grid grid-cols-[24rem_1fr_1.2fr] items-center justify-end gap-5 px-0 py-5 has-[button]:flex has-[button]:justify-items-end has-[button]:gap-5 [&:not(:last-child)]:border-2 [&:not(:last-child)]:border-gray-100">
-      {label && (
-        <label className="px-4 font-medium" htmlFor={children.props.id}>
-          {label}
-        </label>
-      )}
+      {label && <label className="px-4 font-medium">{label}</label>}
       {children}
-      {errors && <span className="text-xl text-red-700">{errors}</span>}
+      {error && <span className="text-xl text-red-700">{error}</span>}
     </div>
   );
 }
