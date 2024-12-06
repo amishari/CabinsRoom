@@ -1,9 +1,11 @@
+import UserAvatar from '../features/authentication/UseAvatar';
 import HeaderMenu from './HeaderMenu';
 function Header() {
   return (
-    <div className="bg-grey-200 col-start-2 col-end-6 grid">
+    <header className="flex items-center justify-end gap-6 border-b-2 border-gray-200 bg-white p-5 shadow-sm md:p-12">
+      <UserAvatar />
       <HeaderMenu />
-    </div>
+    </header>
   );
 }
 export default Header;
