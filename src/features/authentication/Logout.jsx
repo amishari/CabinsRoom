@@ -5,7 +5,7 @@ import SpinnerMini from '../../ui/SpinnerMini';
 export default function Logout() {
   const { logout, isLoading } = useLogout();
   return (
-    <div>
+    <div className="group relative">
       <button
         disabled={isLoading}
         onClick={logout}
@@ -17,6 +17,9 @@ export default function Logout() {
           <SpinnerMini />
         )}
       </button>
+      <span className="absolute left-1/2 mt-1 -translate-x-1/2 -translate-y-10 transform rounded bg-white px-2 py-1 font-serif text-base font-semibold text-indigo-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+        Logout
+      </span>
     </div>
   );
 }
