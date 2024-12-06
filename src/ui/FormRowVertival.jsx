@@ -7,7 +7,7 @@ export default function FormRowVertical({ label, children, error }) {
         </label>
       )}
       {children}
-      {error && <span className="text-xl text-red-700">{errors}</span>}
+      {error && <span className="text-xl text-red-700">{error}</span>}
     </div>
   );
 }

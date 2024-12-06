@@ -1,12 +1,14 @@
 import { useForm } from 'react-hook-form';
 import Button from '../../ui/Button';
 import FormRow from '../../ui/FormRow';
+import { useSignup } from './useSignup';
 
 export default function SignupForm() {
+  const { signup, isLoading } = useSignup();
   const { register, formState, getValues, handleSubmit, reset } = useForm();
   const { errors } = formState;
-  function onSubmit(data) {
-    console.log(data);
+  function onSubmit({ fullName, email, password }) {
+    signup({ fullName, email, password }, { onSettled: () => reset() });
   }
   return (
     <div>
@@ -16,7 +18,7 @@ export default function SignupForm() {
             className="rounded-lg border-2 border-gray-300 bg-white px-5 py-3 shadow-lg"
             type="text"
             id="fullName"
-            // disabled={isLoading}
+            disabled={isLoading}
             {...register('fullName', {
               required: 'This field is required',
               pattern: { value: /^[A-Za-z]+$/i, message: 'Only letters!' },
@@ -28,7 +30,7 @@ export default function SignupForm() {
             className="rounded-lg border-2 border-gray-300 bg-white px-5 py-3 shadow-lg"
             type="email"
             id="email"
-            // disabled={isLoading}
+            disabled={isLoading}
             {...register('email', {
               required: 'This field is required',
               pattern: {
@@ -46,8 +48,9 @@ export default function SignupForm() {
             className="rounded-lg border-2 border-gray-300 bg-white px-5 py-3 shadow-lg"
             type="password"
             id="password"
+            disabled={isLoading}
             {...register('password', {
-              // required: 'This field is required',
+              required: 'This field is required',
               minLength: {
                 value: 8,
                 message: 'Password needs a minimum of 8 characters',
@@ -63,6 +66,7 @@ export default function SignupForm() {
             className="rounded-lg border-2 border-gray-300 bg-white px-5 py-3 shadow-lg"
             type="password"
             id="passwordConfirm"
+            disabled={isLoading}
             {...register('passwordConfirm', {
               required: 'This field is required',
               validate: (value) =>
@@ -71,10 +75,15 @@ export default function SignupForm() {
           />
         </FormRow>
         <FormRow>
-          <Button variation="secondary" onClick={reset}>
+          <Button
+            variation="secondary"
+            type="reset"
+            disabled={isLoading}
+            onClick={reset}
+          >
             Cancel
           </Button>
-          <Button type="submit">Create new user</Button>
+          <Button disabled={isLoading}>Create new user</Button>
         </FormRow>
       </form>
     </div>
