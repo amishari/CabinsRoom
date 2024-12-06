@@ -31,16 +31,14 @@ function Cabins() {
   );
 
   return (
-    <Menus>
-      <div className="border-gray-150 overflow-hidden rounded-lg border-2 border-gray-200 bg-gray-50 px-9 py-5 text-2xl">
-        <CabinHeader />
-        <CabinHeaderRow />
-        {sortedCabins.map((cabin) => (
-          <CabinRow data={cabin} key={cabin.id} />
-        ))}
-        <AddNewCabin />
-      </div>
-    </Menus>
+    <div className="border-gray-150 overflow-hidden rounded-lg border-2 border-gray-200 bg-gray-50 px-9 py-5 text-2xl">
+      <CabinHeader />
+      <CabinHeaderRow />
+      {sortedCabins.map((cabin) => (
+        <CabinRow data={cabin} key={cabin.id} />
+      ))}
+      <AddNewCabin />
+    </div>
   );
 }
 export default Cabins;
