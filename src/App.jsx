@@ -10,6 +10,7 @@ import Cabins from './pages/Cabins';
 import Settings from './pages/Settings';
 import Users from './pages/Users';
 import Login from './pages/Login';
+import Account from './pages/Account';
 import PageNotFound from './pages/PageNotFound';
 import ProtectedRoute from './ui/ProtectedRoute';
 
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         element: <Users />,
         path: '/users',
+      },
+      {
+        element: <Account />,
+        path: '/account',
       },
     ],
   },

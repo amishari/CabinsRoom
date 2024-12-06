@@ -1,8 +1,8 @@
-import Logout from '../features/authentication/Logout';
+import HeaderMenu from './HeaderMenu';
 function Header() {
   return (
     <div className="bg-grey-200 col-start-2 col-end-6 grid">
-      <Logout />
+      <HeaderMenu />
     </div>
   );
 }
