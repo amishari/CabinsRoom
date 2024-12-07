@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { useUser } from '../authentication/useUser';
 import Button from '../../ui/Button';
 import FormRow from '../../ui/FormRow';
 import { useUpdateUser } from './useUpdateUser';
+import { useUser } from './useUser';
 
 export default function UpdateUserDataForm() {
   // We don't need the loading state
@@ -16,11 +16,13 @@ export default function UpdateUserDataForm() {
   const [fullName, setFullName] = useState(currentFullName);
   const [avatar, setAvatar] = useState(null);
 
-  const { mutate: updateUser, isLoading: isUpdating } = useUpdateUser();
+  const { updateUser, isUpdating } = useUpdateUser();
 
   function handleSubmit(e) {
     e.preventDefault();
     if (!fullName) return;
+    console.log(fullName);
+    console.log(avatar);
 
     updateUser(
       { fullName, avatar },

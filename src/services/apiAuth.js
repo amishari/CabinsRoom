@@ -24,7 +24,7 @@ export async function login({ email, password }) {
   });
 
   if (error) throw new Error(error.message);
-  console.log(data);
+
   return data;
 }
 
@@ -45,6 +45,7 @@ export async function logout() {
 
 export async function updateCurrentUser({ password, fullName, avatar }) {
   // 1. Update password OR fullName
+  // only one of the following conditions true at the same time so we can write like this
   let updateData;
   if (password) updateData = { password };
   if (fullName) updateData = { data: { fullName } };
@@ -58,7 +59,7 @@ export async function updateCurrentUser({ password, fullName, avatar }) {
   const fileName = `avatar-${data.user.id}-${Math.random()}`;
 
   const { error: storageError } = await supabase.storage
-    .from('avatars')
+    .from('avatar')
     .upload(fileName, avatar);
 
   if (storageError) throw new Error(storageError.message);
@@ -66,7 +67,7 @@ export async function updateCurrentUser({ password, fullName, avatar }) {
   // 3. Update avatar in the user
   const { data: updatedUser, error: error2 } = await supabase.auth.updateUser({
     data: {
-      avatar: `${SUPABASE_URL}/storage/v1/object/public/avatars/${fileName}`,
+      avatar: `${SUPABASE_URL}/storage/v1/object/public/avatar/${fileName}`,
     },
   });
 
